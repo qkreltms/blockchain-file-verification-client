@@ -9,8 +9,8 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import FormGroup from "@material-ui/core/FormGroup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import Button from "@material-ui/core/Button"
-import { Link } from "react-router-dom"
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 const styles = {
   root: {
@@ -54,7 +54,7 @@ class MenuAppBar extends React.Component {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              제목
+            <Link to="/">웹 제목</Link>
             </Typography>
             {isLoggedIn ? (
               <div>
@@ -80,21 +80,19 @@ class MenuAppBar extends React.Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={this.handleClose}>프로필</MenuItem>
-                  <MenuItem onClick={this.handleClose}>내 계정</MenuItem>
+                  <MenuItem onClick={this.handleClose}>
+                    {" "}
+                    <Link to="/menu/profile">프로필</Link>
+                  </MenuItem>
                 </Menu>
               </div>
             ) : (
               <div>
                 <Button>
-                  <Link to="/signup">
-                    회원가입
-                  </Link>
+                  <Link to="/signup">회원가입</Link>
                 </Button>
                 <Button>
-                  <Link to="/login">
-                    로그인
-                  </Link>
+                  <Link to="/login">로그인</Link>
                 </Button>
               </div>
             )}

@@ -7,7 +7,7 @@ class MainPage extends React.Component {
   }
 
   render () {
-    return (<div> 로그인 페이지 </div>)
+    return (<div> 프로필 </div>)
   }
 }
 
