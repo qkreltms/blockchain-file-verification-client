@@ -1,6 +1,6 @@
 import React from 'react'
 
-export class MainPage extends React.Component {
+class MainPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
@@ -10,3 +10,5 @@ export class MainPage extends React.Component {
     return (<div> mainpage </div>)
   }
 }
+
+export default MainPage
