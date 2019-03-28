@@ -11,6 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import LoginDialog from "../common/loginDialog";
 
 const styles = {
   root: {
@@ -28,33 +29,51 @@ const styles = {
 class MenuAppBar extends React.Component {
   state = {
     isLoggedIn: false,
-    anchorEl: null
+    anchorEl: null,
+    isOpen: false
   };
 
-  handleChange = event => {
-    this.setState({ auth: event.target.checked });
-  };
+  setIsOpen = isOpen => {
+    this.setState({ isOpen });
+  }
+
+  // handleChange = event => {
+  //   this.setState({ auth: event.target.checked });
+  // }
 
   handleMenu = event => {
     this.setState({ anchorEl: event.currentTarget });
-  };
+  }
 
   handleClose = () => {
     this.setState({ anchorEl: null });
-  };
+  }
 
-  render() {
+  handleOnLogin = () => {
+    this.setState({ isOpen: true });
+  }
+
+  handleOnSignUp = () => {
+    //signup modal 창 나옴
+  }
+
+  render = () => {
     const { classes } = this.props;
     const { isLoggedIn, anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
     return (
       <div className={classes.root}>
+        {this.state.isOpen ? (
+          <LoginDialog setIsOpen={this.setIsOpen} isOpen={this.state.isOpen} />
+        ) : (
+          <div />
+        )}
         <FormGroup />
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-            <Link to="/">웹 제목</Link>
+              <Link to="/">웹 제목</Link>
             </Typography>
             {isLoggedIn ? (
               <div>
@@ -88,12 +107,8 @@ class MenuAppBar extends React.Component {
               </div>
             ) : (
               <div>
-                <Button>
-                  <Link to="/signup">회원가입</Link>
-                </Button>
-                <Button>
-                  <Link to="/login">로그인</Link>
-                </Button>
+                <Button onClick={this.handleOnSignUp}>회원가입</Button>
+                <Button onClick={this.handleOnLogin}>로그인</Button>
               </div>
             )}
           </Toolbar>
